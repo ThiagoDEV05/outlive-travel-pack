@@ -1,0 +1,236 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+
+
+@theme inline {
+  --font-display: 'Viga', sans-serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-amber-glow: var(--amber-glow);
+  --color-sage-deep: var(--sage-deep);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-dark-foreground: var(--brand-dark-foreground);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.213 0.072 255.6);
+  --surface: oklch(0.98 0.005 255);
+  --surface-elevated: oklch(0.96 0.008 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.213 0.072 255.6);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.213 0.072 255.6);
+  /* Primary — verde-grama Outlive #5cbc47 */
+  --primary: oklch(0.712 0.18 140.2);
+  --primary-foreground: oklch(0.213 0.072 255.6);
+  /* Azul-marinho profundo Outlive #0a2a55 */
+  --sage-deep: oklch(0.289 0.086 257.3);
+  --secondary: oklch(0.96 0.008 255);
+  --secondary-foreground: oklch(0.213 0.072 255.6);
+  --muted: oklch(0.96 0.008 255);
+  --muted-foreground: oklch(0.5 0.02 255);
+  --accent: oklch(0.712 0.18 140.2);
+  --accent-foreground: oklch(0.213 0.072 255.6);
+  --amber-glow: oklch(0.789 0.163 139.6);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.9 0.008 255);
+  --input: oklch(0.9 0.008 255);
+  --ring: oklch(0.712 0.18 140.2);
+  /* Brand dark — azul-marinho profundo #001839 */
+  --brand-dark: oklch(0.213 0.072 255.6);
+  --brand-dark-foreground: oklch(0.98 0.005 255);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Content is visible by default; only hidden once JS marks the container ready,
+   so a failed/slow hydration never leaves the page blank. */
+.reveal-ready .reveal {
+  opacity: 0;
+}
+.reveal-ready .reveal.in {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .reveal { opacity: 1; animation: none; }
+}
+.cta-glow {
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+.cta-glow:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.96);
+}
+.placeholder-img {
+  background: linear-gradient(135deg, oklch(0.96 0 0), oklch(0.93 0.02 145));
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted-foreground);
+  font-size: 0.75rem;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.placeholder-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--primary) 15%, transparent), transparent 60%);
+}
+.placeholder-img span {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-sans);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Marquee */
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  display: flex;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4rem;
+  padding-right: 4rem;
+  animation: marquee-x 28s linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.media-logo-img {
+  height: 3.25rem;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.85;
+  filter: grayscale(1);
+  transition: opacity 0.25s ease;
+}
+.marquee:hover .media-logo-img { opacity: 1; }
+
+/* Blueprint grid background (hero) */
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.hero-glow::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -8%;
+  width: 46%;
+  height: 90%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--primary) 26%, transparent), transparent 68%);
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Floating badges around hero product */
+.float-badge {
+  animation: float-y 5s ease-in-out infinite;
+}
+.float-badge.delay { animation-delay: 1.6s; }
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-badge { animation: none; }
+}
+
+/* Slogan text marquee */
+.slogan-track {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  animation: marquee-x 38s linear infinite;
+  will-change: transform;
+}
+.slogan-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.5rem;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.slogan-dot {
+  height: 0.4rem;
+  width: 0.4rem;
+  border-radius: 9999px;
+  background: var(--primary);
+  flex-shrink: 0;
+}
