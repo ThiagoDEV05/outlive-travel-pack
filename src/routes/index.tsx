@@ -2,24 +2,24 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import { Check, X, AlertTriangle, Crown, Minus, Star, Battery, Brain, ShieldAlert, Zap, ShieldCheck, Leaf, Bone, Moon, Sparkles, FlaskConical, ArrowRight, Instagram } from "lucide-react";
 
-import imgBoxSachets from "@/assets/daily-health-travel-pack.png.asset.json";
+import imgBoxSachets from "@/assets/daily-health-travel-pack.png";
 import imgBox from "@/assets/daily-health-box.png";
-import imgBottlePour from "@/assets/daily-health-hero-square.jpg.asset.json";
+import imgBottlePour from "@/assets/daily-health-hero-square.jpg";
 import JourneyTimeline from "@/components/JourneyTimeline";
 
-import logoExame from "@/assets/media/exame.png.asset.json";
-import logoFitfeed from "@/assets/media/fitfeed.png.asset.json";
-import logoPegn from "@/assets/media/pegn.png.asset.json";
-import logoValor from "@/assets/media/valor.png.asset.json";
-import logoVejaSp from "@/assets/media/veja-sp.png.asset.json";
-import outliveLogo from "@/assets/brand/outlive-logo.png.asset.json";
+import logoExame from "@/assets/media/exame.png";
+import logoFitfeed from "@/assets/media/fitfeed.png";
+import logoPegn from "@/assets/media/pegn.png";
+import logoValor from "@/assets/media/valor.png";
+import logoVejaSp from "@/assets/media/veja-sp.png";
+import outliveLogo from "@/assets/brand/outlive-logo.png";
 
 const mediaLogos = [
-  { src: logoFitfeed.url, alt: "FitFeed" },
-  { src: logoPegn.url, alt: "Pequenas Empresas & Grandes Negócios" },
-  { src: logoVejaSp.url, alt: "Veja São Paulo" },
-  { src: logoValor.url, alt: "Valor Econômico" },
-  { src: logoExame.url, alt: "Exame" },
+  { src: logoFitfeed, alt: "FitFeed" },
+  { src: logoPegn, alt: "Pequenas Empresas & Grandes Negócios" },
+  { src: logoVejaSp, alt: "Veja São Paulo" },
+  { src: logoValor, alt: "Valor Econômico" },
+  { src: logoExame, alt: "Exame" },
 ];
 
 export const Route = createFileRoute("/")({
@@ -184,7 +184,7 @@ function Index() {
       {/* Top logo bar */}
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <img src={outliveLogo.url} alt="Outlive" className="h-6 w-auto md:h-7" />
+          <img src={outliveLogo} alt="Outlive" className="h-6 w-auto md:h-7" />
           <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
             <a href="#problema" className="transition-colors hover:text-foreground">Benefícios</a>
             <a href="#produto" className="transition-colors hover:text-foreground">Produto</a>
@@ -255,7 +255,7 @@ function Index() {
           <div className="reveal order-last md:order-last">
             <div className="relative mx-auto w-full max-w-[540px]">
               <img
-                src={imgBottlePour.url}
+                src={imgBottlePour}
                 alt="Daily Health sendo preparado na garrafa Outlive"
                 width={1280}
                 height={1280}
@@ -398,7 +398,7 @@ function Index() {
 
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-2 md:items-center md:py-28">
           <div className="reveal">
-            <img src={imgBoxSachets.url} alt="Caixa e sachês Daily Health More in One sabor limão siciliano" width={1100} height={1230} loading="lazy" className="mx-auto w-full max-w-[520px] drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]" />
+            <img src={imgBoxSachets} alt="Caixa e sachês Daily Health More in One sabor limão siciliano" width={1100} height={1230} loading="lazy" className="mx-auto w-full max-w-[520px] drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]" />
           </div>
           <div className="reveal text-center md:text-left">
             <span className="inline-block rounded-full bg-primary/15 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
@@ -711,7 +711,7 @@ function Index() {
       <footer className="border-t border-border bg-background">
         <div className="mx-auto max-w-6xl px-5 py-10">
           <div className="flex flex-col items-center gap-4 text-center">
-            <img src={outliveLogo.url} alt="Outlive" className="h-7 w-auto" />
+            <img src={outliveLogo} alt="Outlive" className="h-7 w-auto" />
             <a
               href="https://www.instagram.com/outlivenutrition/"
               target="_blank"
